@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>happy valentine’s day, maahru</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff7fb;
+      --ink:#17121f;
+      --muted:rgba(23,18,31,.60);
+
+      --pink:#ff4fa0;
+      --pink2:#ff86c7;
+      --pink3:#ffd0e7;
+
+      --shadow: 0 30px 90px rgba(35,10,30,.12);
+      --radius: 28px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 600px at 18% 10%, rgba(255,79,160,.12), transparent 55%),
+        radial-gradient(900px 600px at 85% 18%, rgba(255,134,199,.12), transparent 55%),
+        radial-gradient(900px 600px at 50% 96%, rgba(255,208,231,.26), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, #ffffff 55%, #fff5fa 100%);
+      overflow:hidden;
+    }
+
+    /* floating hearts */
+    .bg-hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.22;
+      filter: blur(.15px);
+    }
+    .bg-hearts span{
+      position:absolute;
+      color: rgba(255,79,160,.55);
+      animation: floatUp linear infinite;
+      user-select:none;
+      will-change: transform, opacity;
+    }
+    @keyframes floatUp{
+      from{ transform: translateY(112vh) translateX(0) rotate(0deg); opacity:0; }
+      12%{ opacity:1; }
+      to{ transform: translateY(-140px) translateX(48px) rotate(18deg); opacity:0; }
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:20px;
+    }
+
+    .card{
+      width:min(980px, 100%);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(23,18,31,.10);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+      padding: clamp(18px, 3vw, 34px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(255,79,160,.12), transparent 44%),
+        radial-gradient(circle at 84% 18%, rgba(255,134,199,.10), transparent 48%),
+        radial-gradient(circle at 50% 120%, rgba(255,208,231,.55), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .topline{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      color: rgba(23,18,31,.50);
+      font-size:12px;
+      letter-spacing:.35px;
+      text-transform:lowercase;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(23,18,31,.08);
+      box-shadow: 0 12px 28px rgba(35,10,30,.06);
+    }
+    .dot{
+      width:7px; height:7px; border-radius:50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      box-shadow: 0 0 18px rgba(255,79,160,.30);
+    }
+
+    .center{
+      position:relative;
+      display:grid;
+      place-items:center;
+      padding: 4px 0 0;
+    }
+
+    .bouquetFrame{
+      width:min(760px, 100%);
+      aspect-ratio: 16/12;
+      border-radius: 26px;
+      border: 1px solid rgba(23,18,31,.10);
+      background:
+        radial-gradient(420px 220px at 30% 30%, rgba(255,79,160,.10), transparent 60%),
+        radial-gradient(420px 240px at 75% 40%, rgba(255,134,199,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,245,250,.92));
+      box-shadow:
+        0 28px 70px rgba(35,10,30,.10),
+        inset 0 0 0 1px rgba(255,255,255,.55);
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      padding: 16px;
+      position:relative;
+    }
+
+    /* gentle bouquet sway */
+    .bouquetFrame svg{
+      width:100%;
+      height:100%;
+      transform-origin: 50% 70%;
+      animation: sway 5.6s ease-in-out infinite;
+      filter: drop-shadow(0 26px 34px rgba(35,10,30,.10));
+    }
+    @keyframes sway{
+      0%,100%{ transform: rotate(-.6deg); }
+      50%{ transform: rotate(.7deg); }
+    }
+
+    .bottom{
+      position:relative;
+      margin-top:18px;
+      text-align:center;
+      padding-bottom: 2px;
+    }
+
+    .msg{
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(34px, 4.6vw, 56px);
+      line-height:1.05;
+      margin: 0;
+      letter-spacing:.2px;
+      background: linear-gradient(135deg, rgba(255,79,160,.95), rgba(255,134,199,.90));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 18px 60px rgba(255,79,160,.15);
+    }
+
+    .heartsLine{
+      margin-top: 10px;
+      font-size: 18px;
+      color: rgba(255,79,160,.70);
+      letter-spacing: 6px;
+      user-select:none;
+    }
+
+    .sub{
+      margin: 10px 0 0;
+      color: rgba(23,18,31,.58);
+      font-size: 13px;
+      letter-spacing:.25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="topline">
+        <div class="pill"><span class="dot"></span> white + pink</div>
+        <div class="pill">bouquet</div>
+      </div>
+
+      <div class="center">
+        <div class="bouquetFrame">
+          <!-- Detailed SVG bouquet -->
+          <svg viewBox="0 0 960 720" role="img" aria-label="A detailed bouquet of pink flowers">
+            <defs>
+              <linearGradient id="wrapGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.96"/>
+                <stop offset="1" stop-color="#ffeaf4" stop-opacity="0.96"/>
+              </linearGradient>
+
+              <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff4fa0" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#ff86c7" stop-opacity="0.85"/>
+              </linearGradient>
+
+              <linearGradient id="stemGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2f8f62"/>
+                <stop offset="1" stop-color="#1d6a49"/>
+              </linearGradient>
+
+              <radialGradient id="petalSoft" cx="40%" cy="35%" r="70%">
+                <stop offset="0" stop-color="#ffe5f2"/>
+                <stop offset="1" stop-color="#ff70b8" stop-opacity="0.95"/>
+              </radialGradient>
+
+              <radialGradient id="petalDeep" cx="40%" cy="35%" r="70%">
+                <stop offset="0" stop-color="#ffd3ea"/>
+                <stop offset="1" stop-color="#ff4fa0" stop-opacity="0.95"/>
+              </radialGradient>
+
+              <radialGradient id="roseCore" cx="45%" cy="40%" r="60%">
+                <stop offset="0" stop-color="#fff2fa"/>
+                <stop offset="1" stop-color="#ff86c7"/>
+              </radialGradient>
+
+              <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#2b0c1f" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+
+            <!-- ground shadow -->
+            <ellipse cx="490" cy="630" rx="250" ry="55" fill="#2b0c1f" opacity="0.08"/>
+
+            <!-- wrapping -->
+            <g filter="url(#softShadow)">
+              <path d="M240 610
+                       C260 520, 300 455, 370 400
+                       C420 360, 460 330, 485 305
+                       C510 330, 555 360, 610 400
+                       C680 450, 720 520, 740 610
+                       C660 640, 560 660, 490 660
+                       C420 660, 320 640, 240 610 Z"
+                    fill="url(#wrapGrad)" stroke="rgba(23,18,31,.12)" stroke-width="2" />
+            </g>
+
+            <!-- ribbon -->
+            <g filter="url(#softShadow)">
+              <path d="M380 560 C410 540, 440 530, 490 530
+                       C540 530, 570 540, 600 560
+                       C560 590, 530 602, 490 602
+                       C450 602, 420 590, 380 560 Z"
+                    fill="url(#ribbonGrad)" opacity="0.95"/>
+              <circle cx="490" cy="560" r="14" fill="#ff4fa0" opacity="0.95"/>
+            </g>
+
+            <!-- stems -->
+            <g opacity="0.95">
+              <path d="M470 540 C450 490, 430 440, 410 380" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M490 540 C490 485, 490 430, 490 360" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M510 540 C535 490, 560 440, 585 380" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M455 540 C420 510, 385 475, 345 430" stroke="url(#stemGrad)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+              <path d="M525 540 C560 510, 595 475, 635 430" stroke="url(#stemGrad)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+            </g>
+
+            <!-- leaves -->
+            <g opacity="0.95">
+              <path d="M420 455 C380 450, 350 470, 335 505
+                       C368 515, 405 500, 420 455 Z"
+                    fill="#2f8f62" opacity="0.85"/>
+              <path d="M560 455 C600 450, 630 470, 645 505
+                       C612 515, 575 500, 560 455 Z"
+                    fill="#2f8f62" opacity="0.85"/>
+            </g>
+
+            <!-- Flowers -->
+            <g>
+              <!-- center rose -->
+              <g transform="translate(490 290)">
+                <circle cx="0" cy="0" r="54" fill="url(#roseCore)" opacity="0.95"/>
+                <path d="M-10 -18 C-38 -20, -48 8, -24 24
+                         C-4 36, 6 18, -10 -18 Z"
+                      fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M10 -22 C38 -18, 46 12, 22 26
+                         C2 38, -6 18, 10 -22 Z"
+                      fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M-28 -4 C-58 -2, -54 34, -22 42
+                         C0 48, 8 26, -28 -4 Z"
+                      fill="url(#petalSoft)" opacity="0.82"/>
+                <path d="M28 -6 C58 -2, 54 34, 22 42
+                         C0 48, -8 26, 28 -6 Z"
+                      fill="url(#petalSoft)" opacity="0.82"/>
+                <circle cx="0" cy="6" r="18" fill="#fff2fa" opacity="0.78"/>
+              </g>
+
+              <!-- left peony -->
+              <g transform="translate(380 330)">
+                <circle cx="0" cy="0" r="54" fill="#ffe6f3" opacity="0.75"/>
+                <path d="M0 -70 C22 -62, 22 -40, 0 -32 C-22 -40, -22 -62, 0 -70 Z" fill="url(#petalSoft)" opacity="0.92"/>
+                <path d="M62 -18 C64 6, 44 20, 30 6 C26 -18, 44 -28, 62 -18 Z" fill="url(#petalDeep)" opacity="0.9"/>
+                <path d="M-62 -18 C-64 6, -44 20, -30 6 C-26 -18, -44 -28, -62 -18 Z" fill="url(#petalDeep)" opacity="0.9"/>
+                <circle cx="0" cy="6" r="12" fill="#fff2fa" opacity="0.8"/>
+              </g>
+
+              <!-- right lily -->
+              <g transform="translate(600 330)">
+                <path d="M0 -64 C18 -40, 20 -10, 0 10 C-20 -10, -18 -40, 0 -64 Z" fill="url(#petalSoft)" opacity="0.95"/>
+                <path d="M52 -10 C28 0, 12 18, 10 40 C26 26, 44 8, 52 -10 Z" fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M-52 -10 C-28 0, -12 18, -10 40 C-26 26, -44 8, -52 -10 Z" fill="url(#petalDeep)" opacity="0.85"/>
+                <circle cx="0" cy="10" r="10" fill="#fff2fa" opacity="0.85"/>
+              </g>
+
+              <!-- tulips -->
+              <g transform="translate(445 360)">
+                <g transform="rotate(-8)">
+                  <path d="M0 -38 C18 -36, 26 -14, 0 8 C-26 -14, -18 -36, 0 -38 Z" fill="url(#petalDeep)" opacity="0.88"/>
+                </g>
+              </g>
+              <g transform="translate(515 360)">
+                <g transform="rotate(8)">
+                  <path d="M0 -38 C18 -36, 26 -14, 0 8 C-26 -14, -18 -36, 0 -38 Z" fill="url(#petalSoft)" opacity="0.86"/>
+                </g>
+              </g>
+
+              <!-- small daisies -->
+              <g opacity="0.92">
+                <g transform="translate(330 380)">
+                  <circle cx="0" cy="0" r="10" fill="#fff" opacity="0.9"/>
+                  <circle cx="0" cy="0" r="5" fill="#ff86c7" opacity="0.85"/>
+                  <g fill="#fff" opacity="0.92">
+                    <ellipse cx="0" cy="-18" rx="6" ry="12"/>
+                    <ellipse cx="14" cy="-10" rx="6" ry="12" transform="rotate(40 14 -10)"/>
+                    <ellipse cx="18" cy="6" rx="6" ry="12" transform="rotate(90 18 6)"/>
+                    <ellipse cx="10" cy="18" rx="6" ry="12" transform="rotate(140 10 18)"/>
+                    <ellipse cx="-6" cy="18" rx="6" ry="12" transform="rotate(200 -6 18)"/>
+                    <ellipse cx="-18" cy="6" rx="6" ry="12" transform="rotate(270 -18 6)"/>
+                    <ellipse cx="-14" cy="-10" rx="6" ry="12" transform="rotate(320 -14 -10)"/>
+                  </g>
+                </g>
+              </g>
+
+              <!-- baby's breath -->
+              <g opacity="0.72" fill="#fff">
+                <circle cx="420" cy="250" r="3.5"/><circle cx="436" cy="232" r="3"/>
+                <circle cx="460" cy="240" r="3.2"/><circle cx="448" cy="262" r="3.1"/>
+                <circle cx="520" cy="250" r="3.5"/><circle cx="536" cy="232" r="3"/>
+                <circle cx="560" cy="240" r="3.2"/><circle cx="548" cy="262" r="3.1"/>
+              </g>
+
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <p class="msg">Happy Valentine’s Day, Maahru</p>
+        <div class="heartsLine">♥ ♥ ♥ ♥ ♥</div>
+        <p class="sub">— from Atharv Diwan</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const bg = document.getElementById("bgHearts");
+    const icons = ["♡","♥","❥"];
+    for(let i=0;i<22;i++){
+      const s = document.createElement("span");
+      s.textContent = icons[Math.floor(Math.random()*icons.length)];
+      s.style.left = (Math.random()*100) + "vw";
+      s.style.fontSize = (14 + Math.random()*22) + "px";
+      s.style.animationDuration = (7 + Math.random()*7) + "s";
+      s.style.animationDelay = (Math.random()*6) + "s";
+      s.style.opacity = (0.35 + Math.random()*0.55).toFixed(2);
+      bg.appendChild(s);
+    }
+  </script>
+</body>
+</html>
