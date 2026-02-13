@@ -1,248 +1,249 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>for maahru</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>for maahru</title>
 
-  <style>
-    :root{
-      --bg:#0b0b10;
-      --card:#11111b;
-      --text:#f6f2ff;
-      --muted:rgba(246,242,255,.70);
-      --faint:rgba(246,242,255,.12);
-      --accent:#d7b6ff;   /* soft lilac */
-      --accent2:#b8ffe2;  /* subtle mint */
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+:root{
+  --bg:#0a0a0f;
+  --pink:#ff5ea8;
+  --rose:#ff8ac7;
+  --soft:#ffd6f0;
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+}
 
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:24px;
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 15% 10%, rgba(215,182,255,.16), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(184,255,226,.10), transparent 55%),
-        radial-gradient(1000px 700px at 50% 90%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
-    }
+*{box-sizing:border-box}
 
-    .card{
-      width:min(620px,100%);
-      background:linear-gradient(180deg, rgba(17,17,27,.88), rgba(17,17,27,.76));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:22px;
-      padding:34px;
-      box-shadow:0 30px 90px rgba(0,0,0,.55);
-      backdrop-filter: blur(10px);
-      position:relative;
-      overflow:hidden;
-    }
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 15% 20%, rgba(255,94,168,.18), transparent 55%),
+    radial-gradient(900px 600px at 85% 15%, rgba(255,138,199,.14), transparent 55%),
+    linear-gradient(180deg,#050509,#090913);
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  padding:24px;
+}
 
-    .glow{
-      position:absolute;
-      inset:-120px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(215,182,255,.18), transparent 45%),
-        radial-gradient(circle at 70% 40%, rgba(184,255,226,.12), transparent 46%);
-      filter: blur(14px);
-      opacity:.9;
-      pointer-events:none;
-    }
+/* floating subtle hearts */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.25;
+}
+.hearts span{
+  position:absolute;
+  animation: float 9s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh); opacity:0}
+  15%{opacity:.9}
+  to{transform:translateY(-120px); opacity:0}
+}
 
-    .topline{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
-      color:rgba(246,242,255,.55);
-      letter-spacing:.35px;
-      font-size:12px;
-      text-transform:lowercase;
-    }
+.letter{
+  width:min(720px,100%);
+  background:rgba(22,16,30,.85);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:26px;
+  padding:38px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  position:relative;
+}
 
-    .pill{
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-    }
+.title{
+  font-family:"Cormorant Garamond", serif;
+  font-size:48px;
+  font-weight:600;
+  letter-spacing:.5px;
+  background:linear-gradient(135deg,var(--soft),var(--rose),var(--pink));
+  -webkit-background-clip:text;
+  color:transparent;
+  margin:0 0 10px;
+}
 
-    h1{
-      position:relative;
-      margin:0 0 14px;
-      font-size:28px;
-      font-weight:600;
-      letter-spacing:.2px;
-    }
+.subtitle{
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:.4px;
+  margin-bottom:24px;
+}
 
-    p{
-      position:relative;
-      margin:0 0 14px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:15px;
-    }
+.line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  margin:24px 0;
+}
 
-    .divider{
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
-      margin:22px 0;
-    }
+.content{
+  font-size:17px;
+  line-height:1.8;
+  color:rgba(255,255,255,.85);
+}
 
-    .btns{
-      position:relative;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:16px;
-    }
+.ask{
+  font-family:"Cormorant Garamond", serif;
+  font-size:28px;
+  margin-top:24px;
+  color:rgba(255,255,255,.95);
+}
 
-    button{
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      padding:11px 18px;
-      border-radius:14px;
-      font-weight:600;
-      cursor:pointer;
-      transition:transform .18s ease, background .25s ease, border-color .25s ease;
-    }
+.btns{
+  margin-top:20px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
 
-    button:hover{
-      transform: translateY(-1px);
-      border-color: rgba(215,182,255,.55);
-      background: rgba(215,182,255,.10);
-    }
+button{
+  padding:12px 20px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.06);
+  color:white;
+  font-weight:500;
+  cursor:pointer;
+  transition:.25s ease;
+}
 
-    #yes{
-      border-color: rgba(215,182,255,.55);
-      background: linear-gradient(135deg, rgba(215,182,255,.18), rgba(184,255,226,.10));
-    }
+#yes{
+  background:linear-gradient(135deg,rgba(255,94,168,.3),rgba(255,138,199,.2));
+  border-color:rgba(255,94,168,.5);
+}
 
-    #result{
-      display:none;
-      margin-top:20px;
-      padding:16px;
-      border-radius:16px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      color:rgba(246,242,255,.88);
-      line-height:1.7;
-      position:relative;
-    }
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(255,94,168,.15);
+}
 
-    .tiny{
-      margin-top:24px;
-      font-size:12px;
-      color:rgba(246,242,255,.40);
-      letter-spacing:.35px;
-    }
+.result{
+  display:none;
+  margin-top:22px;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  line-height:1.8;
+}
 
-    /* subtle sparkle confetti */
-    .spark{
-      position:fixed;
-      top:-20px;
-      left:0;
-      font-size:16px;
-      pointer-events:none;
-      opacity:.95;
-      transition: transform 2.2s linear, opacity 2.2s linear;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,.4));
-    }
-  </style>
+.footer{
+  margin-top:30px;
+  font-size:12px;
+  color:rgba(255,255,255,.4);
+  letter-spacing:.3px;
+}
+</style>
 </head>
 
 <body>
-  <div class="card" role="main" aria-label="valentine page">
-    <div class="glow" aria-hidden="true"></div>
 
-    <div class="topline">
-      <div class="pill">private link</div>
-      <div class="pill">gainesville ⇄ buffalo</div>
-    </div>
+<div class="hearts" id="bgHearts"></div>
 
-    <h1>maahru,</h1>
+<div class="letter">
+  <div class="title">Maahru</div>
+  <div class="subtitle">a letter, written properly.</div>
 
-    <p>
-      There’s distance — and then there’s whatever we have,
-      where you still end up feeling close.
-    </p>
+  <div class="line"></div>
 
-    <p>
-      So I wanted to ask you something… quietly, properly.
-    </p>
-
-    <div class="divider"></div>
-
-    <p style="color:rgba(246,242,255,.86);">
-      Will you be my Valentine?
-    </p>
-
-    <div class="btns">
-      <button id="yes">yes</button>
-      <button id="no">give me a second</button>
-    </div>
-
-    <div id="result"></div>
-
-    <div class="tiny">made with intent. no pressure.</div>
+  <div class="content">
+    There’s something strange about distance.
+    <br><br>
+    You’re all the way in Buffalo —
+    and yet somehow, you still feel close.
+    <br><br>
+    Maybe it’s the late night calls.
+    Maybe it’s the way you exist in my thoughts without trying.
+    <br><br>
+    Either way, I wanted to ask you something.
   </div>
 
+  <div class="ask">
+    will you be my valentine?
+  </div>
+
+  <div class="btns">
+    <button id="yes">yes</button>
+    <button id="no">give me a moment</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <div class="footer">
+    crafted with intention. no pressure.
+  </div>
+</div>
+
 <script>
-  const result = document.getElementById("result");
+/* floating hearts */
+const bg = document.getElementById("bgHearts");
+const icons = ["♡","♥","❥"];
+for(let i=0;i<18;i++){
+  const s=document.createElement("span");
+  s.textContent=icons[Math.floor(Math.random()*icons.length)];
+  s.style.left=(Math.random()*100)+"vw";
+  s.style.fontSize=(16+Math.random()*22)+"px";
+  s.style.animationDuration=(7+Math.random()*6)+"s";
+  s.style.animationDelay=(Math.random()*5)+"s";
+  bg.appendChild(s);
+}
 
-  document.getElementById("yes").addEventListener("click", () => {
-    result.style.display = "block";
-    result.innerHTML = `
-      Okay. That just made my week.
-      <div style="height:10px;"></div>
-      Here’s the move:
-      <br><br>
-      <b>Valentine’s night</b> — FaceTime + a proper dinner (same time, different cities).
-      <br>
-      I’ll send you <b>three options</b> and you pick the vibe.
-      <br><br>
-      And soon… I’ll stop pretending Buffalo is “far.”`;
+const result=document.getElementById("result");
 
-    sparkles();
-  });
+document.getElementById("yes").addEventListener("click",()=>{
+  result.style.display="block";
+  result.innerHTML=`
+  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;">
+    then it's settled.
+  </div>
+  <br>
+  valentine’s night —
+  facetime, proper dinner, same time different cities.
+  <br><br>
+  and soon… buffalo won’t feel so far.
+  `;
+  confetti();
+});
 
-  document.getElementById("no").addEventListener("click", () => {
-    result.style.display = "block";
-    result.innerHTML = `
-      Fair.
-      <br>
-      Take your second — I’ll be right here.`;
-  });
+document.getElementById("no").addEventListener("click",()=>{
+  result.style.display="block";
+  result.innerHTML=`
+  take your time.
+  i’ll still be here.
+  `;
+});
 
-  function sparkles(){
-    const icons = ["✨","✶","✦","⋆"];
-    for(let i=0;i<70;i++){
-      const s = document.createElement("span");
-      s.className = "spark";
-      s.textContent = icons[Math.floor(Math.random()*icons.length)];
-      s.style.left = (Math.random()*100) + "vw";
-      s.style.fontSize = (12 + Math.random()*14) + "px";
-      s.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
-      document.body.appendChild(s);
-
-      requestAnimationFrame(() => {
-        s.style.transform =
-          `translateY(${110 + Math.random()*110}vh) rotate(${Math.random()*240}deg)`;
-        s.style.opacity = "0";
-      });
-
-      setTimeout(() => s.remove(), 2300);
-    }
+function confetti(){
+  const hearts=["💗","💖","💘","💝","💓"];
+  for(let i=0;i<80;i++){
+    const el=document.createElement("span");
+    el.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    el.style.position="fixed";
+    el.style.top="-20px";
+    el.style.left=(Math.random()*100)+"vw";
+    el.style.fontSize=(14+Math.random()*22)+"px";
+    el.style.transition="transform 2.5s linear, opacity 2.5s linear";
+    document.body.appendChild(el);
+    requestAnimationFrame(()=>{
+      el.style.transform=`translateY(${110+Math.random()*110}vh) rotate(${Math.random()*360}deg)`;
+      el.style.opacity="0";
+    });
+    setTimeout(()=>el.remove(),2500);
   }
+}
 </script>
+
 </body>
-</html
+</html>
