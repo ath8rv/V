@@ -2,29 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>for maahru</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>happy valentine’s day, maahru</title>
 
-  <!-- Fonts: handwritten + premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#fff7fb;
-      --ink:#16121c;
-      --muted:rgba(22,18,28,.62);
+      --ink:#17121f;
+      --muted:rgba(23,18,31,.60);
 
       --pink:#ff4fa0;
       --pink2:#ff86c7;
       --pink3:#ffd0e7;
 
-      --card:#ffffff;
-      --stroke:rgba(22,18,28,.10);
-      --shadow: 0 28px 80px rgba(35,10,30,.12);
-
-      --radius: 26px;
+      --shadow: 0 30px 90px rgba(35,10,30,.12);
+      --radius: 28px;
     }
 
     *{ box-sizing:border-box; }
@@ -33,21 +29,22 @@
     body{
       margin:0;
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
-      color:var(--ink);
+      color: var(--ink);
       background:
-        radial-gradient(900px 600px at 18% 10%, rgba(255,79,160,.10), transparent 55%),
-        radial-gradient(900px 600px at 85% 18%, rgba(255,134,199,.10), transparent 55%),
-        radial-gradient(900px 600px at 50% 96%, rgba(255,208,231,.24), transparent 60%),
+        radial-gradient(900px 600px at 18% 10%, rgba(255,79,160,.12), transparent 55%),
+        radial-gradient(900px 600px at 85% 18%, rgba(255,134,199,.12), transparent 55%),
+        radial-gradient(900px 600px at 50% 96%, rgba(255,208,231,.26), transparent 60%),
         linear-gradient(180deg, var(--bg) 0%, #ffffff 55%, #fff5fa 100%);
       overflow:hidden;
     }
 
-    /* floating hearts background */
+    /* floating hearts */
     .bg-hearts{
       position:fixed; inset:0;
       pointer-events:none;
       z-index:0;
       opacity:.22;
+      filter: blur(.15px);
     }
     .bg-hearts span{
       position:absolute;
@@ -62,31 +59,49 @@
       to{ transform: translateY(-140px) translateX(48px) rotate(18deg); opacity:0; }
     }
 
-    /* layout */
-    .app{
+    .wrap{
       position:relative;
       z-index:1;
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding:18px;
+      padding:20px;
     }
 
-    .shell{
-      width:min(900px, 100%);
+    .card{
+      width:min(980px, 100%);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(23,18,31,.10);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+      padding: clamp(18px, 3vw, 34px);
     }
 
-    .topbar{
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(255,79,160,.12), transparent 44%),
+        radial-gradient(circle at 84% 18%, rgba(255,134,199,.10), transparent 48%),
+        radial-gradient(circle at 50% 120%, rgba(255,208,231,.55), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .topline{
+      position:relative;
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:12px;
-      margin: 0 auto 12px;
-      color: rgba(22,18,28,.52);
+      margin-bottom:16px;
+      color: rgba(23,18,31,.50);
       font-size:12px;
       letter-spacing:.35px;
       text-transform:lowercase;
-      padding:0 6px;
     }
     .pill{
       display:inline-flex;
@@ -95,394 +110,87 @@
       padding:8px 12px;
       border-radius:999px;
       background: rgba(255,255,255,.78);
-      border:1px solid rgba(22,18,28,.08);
+      border:1px solid rgba(23,18,31,.08);
       box-shadow: 0 12px 28px rgba(35,10,30,.06);
-      backdrop-filter: blur(10px);
     }
     .dot{
-      width:7px;height:7px;border-radius:50%;
+      width:7px; height:7px; border-radius:50%;
       background: linear-gradient(135deg, var(--pink), var(--pink2));
-      box-shadow: 0 0 18px rgba(255,79,160,.35);
+      box-shadow: 0 0 18px rgba(255,79,160,.30);
     }
 
-    .stage{
+    .center{
       position:relative;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.78);
-      border:1px solid rgba(22,18,28,.08);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      backdrop-filter: blur(14px);
-    }
-
-    /* keep everything in frame */
-    .scenes{
-      position:relative;
-      min-height: min(620px, calc(100vh - 150px));
-    }
-
-    .scene{
-      position:absolute; inset:0;
-      padding: clamp(18px, 3.2vw, 34px);
-      display:grid;
-      align-content:center;
-      gap:16px;
-      opacity:0;
-      transform: translateY(8px);
-      pointer-events:none;
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .scene.active{ opacity:1; transform: translateY(0); pointer-events:auto; }
-
-    .kicker{
-      color: rgba(22,18,28,.55);
-      font-size:12px;
-      letter-spacing:.42px;
-      text-transform:uppercase;
-      margin:0;
-    }
-
-    .h1{
-      font-family: "Playfair Display", serif;
-      font-size: clamp(28px, 4.2vw, 40px);
-      font-weight:600;
-      margin:0;
-      line-height:1.15;
-    }
-
-    .desc{
-      margin:0;
-      color: rgba(22,18,28,.70);
-      line-height:1.75;
-      font-size:15px;
-      max-width: 62ch;
-    }
-
-    .btnrow{ display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
-
-    .btn{
-      border:1px solid rgba(22,18,28,.14);
-      background: rgba(255,255,255,.86);
-      padding:12px 18px;
-      border-radius: 16px;
-      font-weight:600;
-      cursor:pointer;
-      transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
-      box-shadow: 0 14px 34px rgba(35,10,30,.06);
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,79,160,.35);
-      box-shadow: 0 18px 44px rgba(255,79,160,.10);
-      background: rgba(255,245,250,.95);
-    }
-    .btn.primary{
-      border-color: rgba(255,79,160,.40);
-      background: linear-gradient(135deg, rgba(255,79,160,.22), rgba(255,134,199,.18));
-    }
-    .btn.ghost{ background: rgba(255,255,255,.60); }
-
-    /* -----------------------
-       POSTCARD (Scene 1)
-    ------------------------ */
-    .postcardWrap{
-      width:min(760px, 100%);
-      margin: 0 auto;
-      display:grid;
-      gap:14px;
-      justify-items:center;
-    }
-
-    .postcard{
-      width: min(760px, 100%);
-      aspect-ratio: 16/10;
-      border-radius: 22px;
-      background:
-        linear-gradient(180deg, #ffffff 0%, #fff6fb 70%, #fff 100%);
-      border:1px solid rgba(22,18,28,.10);
-      box-shadow: 0 40px 90px rgba(35,10,30,.10);
-      position:relative;
-      overflow:hidden;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      min-height: 320px;
-    }
-
-    /* subtle paper grain */
-    .postcard::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 20% 12%, rgba(255,79,160,.06), transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(255,134,199,.05), transparent 44%),
-        repeating-linear-gradient(0deg, rgba(22,18,28,.02), rgba(22,18,28,.02) 1px, transparent 1px, transparent 6px);
-      opacity:.55;
-      pointer-events:none;
-    }
-
-    /* left “image” area like a real postcard */
-    .pc-left{
-      position:relative;
-      padding:18px;
-      display:grid;
-      align-content:end;
-      gap:10px;
-    }
-
-    .stamp{
-      position:absolute;
-      top:16px; left:16px;
-      width: 86px; height: 86px;
-      border-radius: 18px;
-      border:1px dashed rgba(255,79,160,.55);
-      background: linear-gradient(135deg, rgba(255,79,160,.18), rgba(255,134,199,.12));
       display:grid;
       place-items:center;
-      font-size:34px;
-      color: rgba(255,79,160,.80);
-      box-shadow: 0 18px 44px rgba(255,79,160,.10);
+      padding: 4px 0 0;
     }
 
-    .pc-art{
-      height: 100%;
-      border-radius: 18px;
-      border:1px solid rgba(22,18,28,.08);
+    .bouquetFrame{
+      width:min(760px, 100%);
+      aspect-ratio: 16/12;
+      border-radius: 26px;
+      border: 1px solid rgba(23,18,31,.10);
       background:
-        radial-gradient(240px 140px at 30% 35%, rgba(255,79,160,.14), transparent 60%),
-        radial-gradient(240px 160px at 70% 45%, rgba(255,134,199,.12), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,245,250,.92));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+        radial-gradient(420px 220px at 30% 30%, rgba(255,79,160,.10), transparent 60%),
+        radial-gradient(420px 240px at 75% 40%, rgba(255,134,199,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,245,250,.92));
+      box-shadow:
+        0 28px 70px rgba(35,10,30,.10),
+        inset 0 0 0 1px rgba(255,255,255,.55);
       overflow:hidden;
-      position:relative;
-    }
-
-    /* ribbon wraps postcard */
-    .ribbonV, .ribbonH{
-      position:absolute;
-      background: linear-gradient(180deg, rgba(255,79,160,.74), rgba(255,134,199,.62));
-      box-shadow: 0 14px 40px rgba(255,79,160,.14);
-      border:1px solid rgba(255,79,160,.20);
-      z-index:3;
-    }
-    .ribbonV{ width:64px; top:-2px; bottom:-2px; left:50%; transform:translateX(-50%); border-radius:14px; }
-    .ribbonH{ height:64px; left:-2px; right:-2px; top:50%; transform:translateY(-50%); border-radius:14px; }
-
-    .bow{
-      position:absolute;
-      left:50%; top:50%;
-      transform: translate(-50%,-50%);
-      width: 152px; height: 112px;
-      pointer-events:none;
-      z-index:4;
-      transition: transform .7s ease, opacity .6s ease;
-    }
-    .bow .loop{
-      position:absolute;
-      width: 82px; height: 58px;
-      border-radius: 70px;
-      background: linear-gradient(180deg, rgba(255,79,160,.86), rgba(255,134,199,.72));
-      border:1px solid rgba(255,79,160,.25);
-      box-shadow: 0 20px 50px rgba(255,79,160,.16);
-      top:26px;
-    }
-    .bow .loop.left{ left:8px; transform: rotate(-10deg); }
-    .bow .loop.right{ right:8px; transform: rotate(10deg); }
-    .bow .knot{
-      position:absolute; left:50%; top:50%;
-      width: 32px; height: 24px;
-      border-radius: 10px;
-      transform: translate(-50%,-50%);
-      background: linear-gradient(180deg, rgba(255,79,160,.95), rgba(255,134,199,.78));
-      border:1px solid rgba(255,79,160,.25);
-      box-shadow: 0 14px 30px rgba(255,79,160,.16);
-    }
-    .bow .tail{
-      position:absolute;
-      width: 20px; height: 60px;
-      background: linear-gradient(180deg, rgba(255,79,160,.76), rgba(255,134,199,.56));
-      border:1px solid rgba(255,79,160,.22);
-      top:58px;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-      box-shadow: 0 16px 40px rgba(255,79,160,.12);
-    }
-    .bow .tail.left{ left:60px; transform: rotate(-8deg); }
-    .bow .tail.right{ right:60px; transform: rotate(8deg); }
-
-    /* right address area */
-    .pc-right{
-      position:relative;
-      padding:18px 18px 18px 10px;
       display:grid;
-      align-content:center;
-      gap:12px;
+      place-items:center;
+      padding: 16px;
+      position:relative;
     }
 
-    .divider{
-      position:absolute;
-      top:0; bottom:0;
-      left:0;
-      width:1px;
-      background: linear-gradient(180deg, transparent, rgba(22,18,28,.14), transparent);
+    /* gentle bouquet sway */
+    .bouquetFrame svg{
+      width:100%;
+      height:100%;
+      transform-origin: 50% 70%;
+      animation: sway 5.6s ease-in-out infinite;
+      filter: drop-shadow(0 26px 34px rgba(35,10,30,.10));
+    }
+    @keyframes sway{
+      0%,100%{ transform: rotate(-.6deg); }
+      50%{ transform: rotate(.7deg); }
     }
 
-    .hand{
+    .bottom{
+      position:relative;
+      margin-top:18px;
+      text-align:center;
+      padding-bottom: 2px;
+    }
+
+    .msg{
       font-family: "Dancing Script", cursive;
-      color: rgba(22,18,28,.86);
-    }
-
-    .toName{
-      font-size: 34px;
+      font-size: clamp(34px, 4.6vw, 56px);
       line-height:1.05;
-      margin:0;
+      margin: 0;
       letter-spacing:.2px;
-    }
-    .toAddr{
-      margin:0;
-      font-size:18px;
-      color: rgba(22,18,28,.62);
-    }
-
-    .fromLine{
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px solid rgba(22,18,28,.10);
-      color: rgba(22,18,28,.62);
-      font-size:13px;
-      letter-spacing:.2px;
+      background: linear-gradient(135deg, rgba(255,79,160,.95), rgba(255,134,199,.90));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 18px 60px rgba(255,79,160,.15);
     }
 
-    /* opening animation */
-    .postcard.opening .bow{ transform: translate(-50%,-50%) scale(.92) rotate(-6deg); opacity:.10; }
-    .postcard.opening .ribbonV{ animation: unbandV .85s ease forwards; }
-    .postcard.opening .ribbonH{ animation: unbandH .85s ease forwards; }
-
-    @keyframes unbandV{
-      0%{ transform: translateX(-50%) scaleY(1); opacity:1; }
-      100%{ transform: translateX(-50%) scaleY(.02); opacity:0; }
-    }
-    @keyframes unbandH{
-      0%{ transform: translateY(-50%) scaleX(1); opacity:1; }
-      100%{ transform: translateY(-50%) scaleX(.02); opacity:0; }
+    .heartsLine{
+      margin-top: 10px;
+      font-size: 18px;
+      color: rgba(255,79,160,.70);
+      letter-spacing: 6px;
+      user-select:none;
     }
 
-    /* Scene 2 card */
-    .card2{
-      width:min(760px,100%);
-      margin:0 auto;
-      border-radius: 24px;
-      background: rgba(255,255,255,.86);
-      border:1px solid rgba(22,18,28,.10);
-      box-shadow: 0 34px 90px rgba(35,10,30,.10);
-      padding:24px;
-      position:relative;
-      overflow:hidden;
-    }
-    .card2::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(circle at 16% 12%, rgba(255,79,160,.10), transparent 44%),
-        radial-gradient(circle at 84% 18%, rgba(255,134,199,.10), transparent 48%),
-        radial-gradient(circle at 50% 120%, rgba(255,208,231,.55), transparent 55%);
-      pointer-events:none;
-      opacity:.9;
-    }
-    .card2 *{ position:relative; }
-
-    .handLetter{
-      font-family:"Dancing Script", cursive;
-      font-size: 22px;
-      line-height:1.75;
-      color: rgba(22,18,28,.78);
-      margin: 6px 0 0;
-      max-width: 62ch;
-    }
-
-    .qTitle{
-      font-family:"Playfair Display", serif;
-      font-size: 34px;
-      margin:0 0 6px;
-    }
-
-    .result{
-      margin-top:16px;
-      padding:14px 16px;
-      border-radius:18px;
-      background: rgba(255,255,255,.70);
-      border: 1px solid rgba(255,79,160,.20);
-      display:none;
-      line-height:1.75;
-      color: rgba(22,18,28,.80);
-    }
-
-    /* Scene 3 */
-    .plans{
-      width:min(820px,100%);
-      margin:0 auto;
-      display:grid;
-      gap:14px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width:760px){
-      .postcard{ grid-template-columns: 1fr; aspect-ratio: auto; }
-      .divider{ display:none; }
-      .pc-right{ padding:14px 18px 18px; }
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .tile{
-      background: rgba(255,255,255,.86);
-      border:1px solid rgba(22,18,28,.10);
-      border-radius: 22px;
-      padding:16px;
-      box-shadow: 0 24px 70px rgba(35,10,30,.08);
-      cursor:pointer;
-      transition: transform .18s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
-    }
-    .tile:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,79,160,.28);
-      box-shadow: 0 30px 90px rgba(255,79,160,.10);
-      background: rgba(255,245,250,.92);
-    }
-    .tile.selected{
-      border-color: rgba(255,79,160,.44);
-      box-shadow: 0 34px 100px rgba(255,79,160,.14);
-      background: linear-gradient(135deg, rgba(255,79,160,.12), rgba(255,134,199,.10));
-    }
-    .tile h3{ margin:0 0 6px; font-size:16px; font-weight:650; }
-    .tile p{ margin:0; color: rgba(22,18,28,.66); font-size:13px; line-height:1.6; }
-
-    .note{
-      margin:0;
-      color: rgba(22,18,28,.68);
-      line-height:1.7;
-      font-size:14px;
-      max-width: 70ch;
-    }
-
-    .footer{
-      padding: 14px 22px 22px;
-      color: rgba(22,18,28,.40);
-      font-size:12px;
-      letter-spacing:.35px;
-      text-transform:lowercase;
-    }
-
-    /* confetti hearts */
-    .confetti{
-      position:fixed;
-      top:-24px;
-      left:0;
-      pointer-events:none;
-      z-index:9999;
-      filter: drop-shadow(0 14px 16px rgba(35,10,30,.18));
-      transition: transform 2.6s linear, opacity 2.6s linear;
-      opacity:.95;
+    .sub{
+      margin: 10px 0 0;
+      color: rgba(23,18,31,.58);
+      font-size: 13px;
+      letter-spacing:.25px;
     }
   </style>
 </head>
@@ -490,268 +198,197 @@
 <body>
   <div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
 
-  <div class="app">
-    <div class="shell">
-
-      <div class="topbar">
-        <div class="pill"><span class="dot"></span> private link</div>
-        <div class="pill">postcard edition</div>
+  <div class="wrap">
+    <div class="card">
+      <div class="topline">
+        <div class="pill"><span class="dot"></span> white + pink</div>
+        <div class="pill">bouquet</div>
       </div>
 
-      <div class="stage">
-        <div class="scenes">
+      <div class="center">
+        <div class="bouquetFrame">
+          <!-- Detailed SVG bouquet -->
+          <svg viewBox="0 0 960 720" role="img" aria-label="A detailed bouquet of pink flowers">
+            <defs>
+              <linearGradient id="wrapGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.96"/>
+                <stop offset="1" stop-color="#ffeaf4" stop-opacity="0.96"/>
+              </linearGradient>
 
-          <!-- SCENE 1 -->
-          <section class="scene active" id="scene1">
-            <p class="kicker">delivered quietly</p>
-            <h1 class="h1">A postcard for you.</h1>
-            <p class="desc">Wrapped with a ribbon. Addressed to you. You can open it when you’re ready.</p>
+              <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff4fa0" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#ff86c7" stop-opacity="0.85"/>
+              </linearGradient>
 
-            <div class="postcardWrap">
-              <div class="postcard" id="postcard">
-                <div class="ribbonV" aria-hidden="true"></div>
-                <div class="ribbonH" aria-hidden="true"></div>
+              <linearGradient id="stemGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2f8f62"/>
+                <stop offset="1" stop-color="#1d6a49"/>
+              </linearGradient>
 
-                <div class="bow" aria-hidden="true">
-                  <div class="loop left"></div>
-                  <div class="loop right"></div>
-                  <div class="knot"></div>
-                  <div class="tail left"></div>
-                  <div class="tail right"></div>
-                </div>
+              <radialGradient id="petalSoft" cx="40%" cy="35%" r="70%">
+                <stop offset="0" stop-color="#ffe5f2"/>
+                <stop offset="1" stop-color="#ff70b8" stop-opacity="0.95"/>
+              </radialGradient>
 
-                <div class="pc-left">
-                  <div class="stamp" aria-hidden="true">✿</div>
-                  <div class="pc-art" aria-hidden="true"></div>
-                </div>
+              <radialGradient id="petalDeep" cx="40%" cy="35%" r="70%">
+                <stop offset="0" stop-color="#ffd3ea"/>
+                <stop offset="1" stop-color="#ff4fa0" stop-opacity="0.95"/>
+              </radialGradient>
 
-                <div class="pc-right">
-                  <div class="divider" aria-hidden="true"></div>
+              <radialGradient id="roseCore" cx="45%" cy="40%" r="60%">
+                <stop offset="0" stop-color="#fff2fa"/>
+                <stop offset="1" stop-color="#ff86c7"/>
+              </radialGradient>
 
-                  <div>
-                    <p class="hand toName">Maahru Inayat</p>
-                    <p class="hand toAddr">Buffalo, NY</p>
-                    <div class="fromLine">from <span class="hand" style="font-size:18px;">Atharv Diwan</span></div>
-                  </div>
-                </div>
-              </div>
+              <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#2b0c1f" flood-opacity="0.18"/>
+              </filter>
+            </defs>
 
-              <div class="btnrow">
-                <button class="btn primary" id="openCard">open</button>
-                <button class="btn ghost" id="notYet">not yet</button>
-              </div>
+            <!-- ground shadow -->
+            <ellipse cx="490" cy="630" rx="250" ry="55" fill="#2b0c1f" opacity="0.08"/>
 
-              <p class="desc" id="hint1" style="font-size:13px;color:rgba(22,18,28,.52);">it’s small. but it’s real.</p>
-            </div>
-          </section>
+            <!-- wrapping -->
+            <g filter="url(#softShadow)">
+              <path d="M240 610
+                       C260 520, 300 455, 370 400
+                       C420 360, 460 330, 485 305
+                       C510 330, 555 360, 610 400
+                       C680 450, 720 520, 740 610
+                       C660 640, 560 660, 490 660
+                       C420 660, 320 640, 240 610 Z"
+                    fill="url(#wrapGrad)" stroke="rgba(23,18,31,.12)" stroke-width="2" />
+            </g>
 
-          <!-- SCENE 2 -->
-          <section class="scene" id="scene2">
-            <p class="kicker">page one</p>
+            <!-- ribbon -->
+            <g filter="url(#softShadow)">
+              <path d="M380 560 C410 540, 440 530, 490 530
+                       C540 530, 570 540, 600 560
+                       C560 590, 530 602, 490 602
+                       C450 602, 420 590, 380 560 Z"
+                    fill="url(#ribbonGrad)" opacity="0.95"/>
+              <circle cx="490" cy="560" r="14" fill="#ff4fa0" opacity="0.95"/>
+            </g>
 
-            <div class="card2">
-              <h2 class="qTitle">Maahru,</h2>
+            <!-- stems -->
+            <g opacity="0.95">
+              <path d="M470 540 C450 490, 430 440, 410 380" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M490 540 C490 485, 490 430, 490 360" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M510 540 C535 490, 560 440, 585 380" stroke="url(#stemGrad)" stroke-width="10" stroke-linecap="round"/>
+              <path d="M455 540 C420 510, 385 475, 345 430" stroke="url(#stemGrad)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+              <path d="M525 540 C560 510, 595 475, 635 430" stroke="url(#stemGrad)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+            </g>
 
-              <p class="handLetter">
-                You’re all the way in Buffalo — and somehow you still feel close.
-                <br><br>
-                So I wanted to ask you this properly, like a real note.
-              </p>
+            <!-- leaves -->
+            <g opacity="0.95">
+              <path d="M420 455 C380 450, 350 470, 335 505
+                       C368 515, 405 500, 420 455 Z"
+                    fill="#2f8f62" opacity="0.85"/>
+              <path d="M560 455 C600 450, 630 470, 645 505
+                       C612 515, 575 500, 560 455 Z"
+                    fill="#2f8f62" opacity="0.85"/>
+            </g>
 
-              <div class="qTitle" style="font-size:28px; margin-top:14px;">
-                Will you be my Valentine?
-              </div>
+            <!-- Flowers -->
+            <g>
+              <!-- center rose -->
+              <g transform="translate(490 290)">
+                <circle cx="0" cy="0" r="54" fill="url(#roseCore)" opacity="0.95"/>
+                <path d="M-10 -18 C-38 -20, -48 8, -24 24
+                         C-4 36, 6 18, -10 -18 Z"
+                      fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M10 -22 C38 -18, 46 12, 22 26
+                         C2 38, -6 18, 10 -22 Z"
+                      fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M-28 -4 C-58 -2, -54 34, -22 42
+                         C0 48, 8 26, -28 -4 Z"
+                      fill="url(#petalSoft)" opacity="0.82"/>
+                <path d="M28 -6 C58 -2, 54 34, 22 42
+                         C0 48, -8 26, 28 -6 Z"
+                      fill="url(#petalSoft)" opacity="0.82"/>
+                <circle cx="0" cy="6" r="18" fill="#fff2fa" opacity="0.78"/>
+              </g>
 
-              <div class="btnrow">
-                <button class="btn primary" id="yesBtn">yes</button>
-                <button class="btn" id="maybeBtn">give me a second</button>
-              </div>
+              <!-- left peony -->
+              <g transform="translate(380 330)">
+                <circle cx="0" cy="0" r="54" fill="#ffe6f3" opacity="0.75"/>
+                <path d="M0 -70 C22 -62, 22 -40, 0 -32 C-22 -40, -22 -62, 0 -70 Z" fill="url(#petalSoft)" opacity="0.92"/>
+                <path d="M62 -18 C64 6, 44 20, 30 6 C26 -18, 44 -28, 62 -18 Z" fill="url(#petalDeep)" opacity="0.9"/>
+                <path d="M-62 -18 C-64 6, -44 20, -30 6 C-26 -18, -44 -28, -62 -18 Z" fill="url(#petalDeep)" opacity="0.9"/>
+                <circle cx="0" cy="6" r="12" fill="#fff2fa" opacity="0.8"/>
+              </g>
 
-              <div class="result" id="resultBox"></div>
-            </div>
+              <!-- right lily -->
+              <g transform="translate(600 330)">
+                <path d="M0 -64 C18 -40, 20 -10, 0 10 C-20 -10, -18 -40, 0 -64 Z" fill="url(#petalSoft)" opacity="0.95"/>
+                <path d="M52 -10 C28 0, 12 18, 10 40 C26 26, 44 8, 52 -10 Z" fill="url(#petalDeep)" opacity="0.85"/>
+                <path d="M-52 -10 C-28 0, -12 18, -10 40 C-26 26, -44 8, -52 -10 Z" fill="url(#petalDeep)" opacity="0.85"/>
+                <circle cx="0" cy="10" r="10" fill="#fff2fa" opacity="0.85"/>
+              </g>
 
-            <div class="btnrow" style="justify-content:flex-end;">
-              <button class="btn ghost" id="back1">back</button>
-              <button class="btn primary" id="nextToPlans" disabled title="answer first">next</button>
-            </div>
-          </section>
+              <!-- tulips -->
+              <g transform="translate(445 360)">
+                <g transform="rotate(-8)">
+                  <path d="M0 -38 C18 -36, 26 -14, 0 8 C-26 -14, -18 -36, 0 -38 Z" fill="url(#petalDeep)" opacity="0.88"/>
+                </g>
+              </g>
+              <g transform="translate(515 360)">
+                <g transform="rotate(8)">
+                  <path d="M0 -38 C18 -36, 26 -14, 0 8 C-26 -14, -18 -36, 0 -38 Z" fill="url(#petalSoft)" opacity="0.86"/>
+                </g>
+              </g>
 
-          <!-- SCENE 3 -->
-          <section class="scene" id="scene3">
-            <p class="kicker">page two</p>
-            <h2 class="h1" style="font-size:36px;">Then let’s plan it.</h2>
-            <p class="desc">Pick a vibe. We’ll do it long-distance — same time, different cities.</p>
+              <!-- small daisies -->
+              <g opacity="0.92">
+                <g transform="translate(330 380)">
+                  <circle cx="0" cy="0" r="10" fill="#fff" opacity="0.9"/>
+                  <circle cx="0" cy="0" r="5" fill="#ff86c7" opacity="0.85"/>
+                  <g fill="#fff" opacity="0.92">
+                    <ellipse cx="0" cy="-18" rx="6" ry="12"/>
+                    <ellipse cx="14" cy="-10" rx="6" ry="12" transform="rotate(40 14 -10)"/>
+                    <ellipse cx="18" cy="6" rx="6" ry="12" transform="rotate(90 18 6)"/>
+                    <ellipse cx="10" cy="18" rx="6" ry="12" transform="rotate(140 10 18)"/>
+                    <ellipse cx="-6" cy="18" rx="6" ry="12" transform="rotate(200 -6 18)"/>
+                    <ellipse cx="-18" cy="6" rx="6" ry="12" transform="rotate(270 -18 6)"/>
+                    <ellipse cx="-14" cy="-10" rx="6" ry="12" transform="rotate(320 -14 -10)"/>
+                  </g>
+                </g>
+              </g>
 
-            <div class="plans">
-              <div class="grid" id="planGrid">
-                <div class="tile" data-plan="Virtual dinner date">
-                  <h3>Virtual dinner</h3>
-                  <p>Same menu (or surprise). Candle vibe. We eat together on FaceTime.</p>
-                </div>
-                <div class="tile" data-plan="Movie night + dessert">
-                  <h3>Movie + dessert</h3>
-                  <p>One film. Two screens. Pink dessert. Quietly perfect.</p>
-                </div>
-                <div class="tile" data-plan="Late-night FaceTime + letters">
-                  <h3>Late-night FaceTime</h3>
-                  <p>Just us. Real talk. And a line or two from me.</p>
-                </div>
-              </div>
+              <!-- baby's breath -->
+              <g opacity="0.72" fill="#fff">
+                <circle cx="420" cy="250" r="3.5"/><circle cx="436" cy="232" r="3"/>
+                <circle cx="460" cy="240" r="3.2"/><circle cx="448" cy="262" r="3.1"/>
+                <circle cx="520" cy="250" r="3.5"/><circle cx="536" cy="232" r="3"/>
+                <circle cx="560" cy="240" r="3.2"/><circle cx="548" cy="262" r="3.1"/>
+              </g>
 
-              <p class="note" id="planNote">
-                I’ll send you <b>three options</b> for time + food, and you pick what feels most “us.”
-                <br>
-                And soon… I’ll stop acting like Buffalo is far.
-              </p>
-
-              <div class="btnrow">
-                <button class="btn ghost" id="back2">back</button>
-                <button class="btn primary" id="copyText">copy what to text me</button>
-              </div>
-            </div>
-          </section>
-
+            </g>
+          </svg>
         </div>
-
-        <div class="footer">white + pink. hearts in the background. from atharv diwan.</div>
       </div>
 
+      <div class="bottom">
+        <p class="msg">Happy Valentine’s Day, Maahru</p>
+        <div class="heartsLine">♥ ♥ ♥ ♥ ♥</div>
+        <p class="sub">— from Atharv Diwan</p>
+      </div>
     </div>
   </div>
 
-<script>
-  // Background hearts
-  const bg = document.getElementById("bgHearts");
-  const icons = ["♡","♥","❥"];
-  for(let i=0;i<22;i++){
-    const s = document.createElement("span");
-    s.textContent = icons[Math.floor(Math.random()*icons.length)];
-    s.style.left = (Math.random()*100) + "vw";
-    s.style.fontSize = (14 + Math.random()*22) + "px";
-    s.style.animationDuration = (7 + Math.random()*7) + "s";
-    s.style.animationDelay = (Math.random()*6) + "s";
-    s.style.opacity = (0.35 + Math.random()*0.55).toFixed(2);
-    bg.appendChild(s);
-  }
-
-  // Scenes
-  const s1 = document.getElementById("scene1");
-  const s2 = document.getElementById("scene2");
-  const s3 = document.getElementById("scene3");
-  function show(which){
-    [s1,s2,s3].forEach(s => s.classList.remove("active"));
-    which.classList.add("active");
-    window.scrollTo({ top:0, behavior:"smooth" });
-  }
-
-  // Scene 1 actions
-  const postcard = document.getElementById("postcard");
-  const openCard = document.getElementById("openCard");
-  const notYet = document.getElementById("notYet");
-  const hint1 = document.getElementById("hint1");
-
-  openCard.addEventListener("click", () => {
-    postcard.classList.add("opening");
-    hint1.textContent = "opening…";
-    setTimeout(()=> show(s2), 900);
-  });
-
-  notYet.addEventListener("click", () => {
-    hint1.textContent = "okay. open it when you feel like it.";
-    setTimeout(()=> hint1.textContent = "it’s small. but it’s real.", 1400);
-  });
-
-  // Scene 2 actions
-  const yesBtn = document.getElementById("yesBtn");
-  const maybeBtn = document.getElementById("maybeBtn");
-  const resultBox = document.getElementById("resultBox");
-  const nextToPlans = document.getElementById("nextToPlans");
-  const back1 = document.getElementById("back1");
-
-  back1.addEventListener("click", () => show(s1));
-
-  yesBtn.addEventListener("click", () => {
-    resultBox.style.display = "block";
-    resultBox.innerHTML = `
-      <div style="font-family:'Playfair Display',serif; font-size:18px; margin-bottom:6px;">
-        okay. that just made my week.
-      </div>
-      valentine’s night — <b>FaceTime</b> + <b>a proper dinner</b>.
-      <br>
-      same time. different cities.
-    `;
-    nextToPlans.disabled = false;
-    nextToPlans.title = "";
-    heartConfetti();
-  });
-
-  maybeBtn.addEventListener("click", () => {
-    resultBox.style.display = "block";
-    resultBox.innerHTML = `
-      <div style="font-family:'Playfair Display',serif; font-size:18px; margin-bottom:6px;">
-        fair.
-      </div>
-      take your second — i’ll be right here.
-    `;
-    nextToPlans.disabled = false;
-    nextToPlans.title = "";
-  });
-
-  nextToPlans.addEventListener("click", () => show(s3));
-
-  // Scene 3 actions
-  const back2 = document.getElementById("back2");
-  const planGrid = document.getElementById("planGrid");
-  const copyText = document.getElementById("copyText");
-
-  back2.addEventListener("click", () => show(s2));
-
-  let selectedPlan = "";
-  planGrid.addEventListener("click", (e) => {
-    const tile = e.target.closest(".tile");
-    if(!tile) return;
-    [...planGrid.querySelectorAll(".tile")].forEach(t => t.classList.remove("selected"));
-    tile.classList.add("selected");
-    selectedPlan = tile.getAttribute("data-plan") || "";
-  });
-
-  copyText.addEventListener("click", async () => {
-    const plan = selectedPlan || "Virtual dinner date";
-    const msg =
-`Maahru — I opened the postcard. It’s a yes from me.
-Plan vibe: ${plan}.
-Pick what time works in Buffalo and I’ll match it here 🤍
-— Atharv`;
-    try{
-      await navigator.clipboard.writeText(msg);
-      copyText.textContent = "copied ✓";
-      setTimeout(()=> copyText.textContent = "copy what to text me", 1200);
-    }catch{
-      alert("Copy didn’t work here. Select and copy this:\n\n" + msg);
+  <script>
+    const bg = document.getElementById("bgHearts");
+    const icons = ["♡","♥","❥"];
+    for(let i=0;i<22;i++){
+      const s = document.createElement("span");
+      s.textContent = icons[Math.floor(Math.random()*icons.length)];
+      s.style.left = (Math.random()*100) + "vw";
+      s.style.fontSize = (14 + Math.random()*22) + "px";
+      s.style.animationDuration = (7 + Math.random()*7) + "s";
+      s.style.animationDelay = (Math.random()*6) + "s";
+      s.style.opacity = (0.35 + Math.random()*0.55).toFixed(2);
+      bg.appendChild(s);
     }
-  });
-
-  // Confetti
-  function heartConfetti(){
-    const hearts = ["💗","💖","💘","💝","💓"];
-    for(let i=0;i<90;i++){
-      const el = document.createElement("span");
-      el.className = "confetti";
-      el.textContent = hearts[Math.floor(Math.random()*hearts.length)];
-      el.style.left = (Math.random()*100) + "vw";
-      el.style.fontSize = (14 + Math.random()*22) + "px";
-      el.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
-      document.body.appendChild(el);
-
-      requestAnimationFrame(() => {
-        el.style.transform =
-          `translateY(${110 + Math.random()*110}vh) rotate(${Math.random()*360}deg)`;
-        el.style.opacity = "0";
-      });
-
-      setTimeout(()=> el.remove(), 2600);
-    }
-  }
-</script>
+  </script>
 </body>
 </html>
